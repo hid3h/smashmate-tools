@@ -43,7 +43,7 @@ export default async function Home({ params }: { params: { id: string } }) {
   const rateResponse = await fetch(href);
   const rateBody = await rateResponse.text();
   const rateRoot = await parse(rateBody);
-  // 対戦相手の名前, キャラ画像URL, レートを取得sla
+  // 対戦相手の名前, キャラ画像URL, レートを取得する
   const opponentDiv = rateRoot.querySelectorAll("h2").find((h2) => {
     if (!h2.text.includes("プレイヤー")) {
       return false;
