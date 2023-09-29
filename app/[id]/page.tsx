@@ -1,13 +1,13 @@
-export const revalidate = 30;
+export const revalidate = 20;
 
 import Image from "next/image";
 import parse from "node-html-parser";
+import Refresh from "./refresh";
 
 export default async function Home({ params }: { params: { id: string } }) {
   const userId = params.id;
   console.log("取得開始. userId:", userId);
   const response = await fetch(`https://smashmate.net/user/${userId}`);
-  console.log(response.headers);
   const body = await response.text();
   const root = await parse(body);
   const h2List = root.querySelectorAll("h2");
@@ -74,6 +74,7 @@ export default async function Home({ params }: { params: { id: string } }) {
         />
       )}
       <p>{opponentRate}</p>
+      <Refresh />
     </div>
   );
 }
